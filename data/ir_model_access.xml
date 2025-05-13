@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="sjk_studio_group_sys_9ad58288-9c80-4e29-a289-78f310d0f337" model="ir.model.access" context="{'studio': True}">
+    <field name="group_id" ref="base.group_system"/>
+    <field name="model_id" ref="sjk_studio_67cedfef-66d4-4f8d-8e17-ad3d2cca7cc4"/>
+    <field name="name">SJK Studio group_system</field>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+    <field name="perm_write" eval="True"/>
+  </record>
+  <record id="sjk_studio_group_use_2118d244-35f3-4092-bf09-780e2dfbb2b3" model="ir.model.access" context="{'studio': True}">
+    <field name="group_id" ref="base.group_user"/>
+    <field name="model_id" ref="sjk_studio_67cedfef-66d4-4f8d-8e17-ad3d2cca7cc4"/>
+    <field name="name">SJK Studio group_user</field>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+  </record>
+  <record id="sjk_studio_line_grou_72171438-9fa3-4ea1-b647-c0574c326608" model="ir.model.access" context="{'studio': True}">
+    <field name="group_id" ref="base.group_system"/>
+    <field name="model_id" ref="sjk_studio_line_e0ac9b3f-ee27-49a2-9847-9c30d2eb3e4d"/>
+    <field name="name">sjk_studio_line group_system</field>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+    <field name="perm_write" eval="True"/>
+  </record>
+  <record id="sjk_studio_line_grou_5b5f458f-a1af-4178-9270-3650f9627892" model="ir.model.access" context="{'studio': True}">
+    <field name="group_id" ref="base.group_user"/>
+    <field name="model_id" ref="sjk_studio_line_e0ac9b3f-ee27-49a2-9847-9c30d2eb3e4d"/>
+    <field name="name">sjk_studio_line group_user</field>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+  </record>
+  <record id="sjk_studio_stages_gr_ad6ab128-6eec-4400-abf3-241ba90b8e01" model="ir.model.access" context="{'studio': True}">
+    <field name="group_id" ref="base.group_system"/>
+    <field name="model_id" ref="sjk_studio_stages_41c8afce-d957-4e34-9632-026fb5729cd2"/>
+    <field name="name">SJK Studio Stages group_system</field>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+    <field name="perm_write" eval="True"/>
+  </record>
+  <record id="sjk_studio_stages_gr_7d604a13-ee30-40e2-b3ec-046e311b9165" model="ir.model.access" context="{'studio': True}">
+    <field name="group_id" ref="base.group_user"/>
+    <field name="model_id" ref="sjk_studio_stages_41c8afce-d957-4e34-9632-026fb5729cd2"/>
+    <field name="name">SJK Studio Stages group_user</field>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+  </record>
+  <record id="sjk_studio_tags_grou_55807a8e-cdaa-41ce-907b-bce1c44f5ade" model="ir.model.access" context="{'studio': True}">
+    <field name="group_id" ref="base.group_system"/>
+    <field name="model_id" ref="sjk_studio_tags_abc4df67-d578-4603-ba2c-41815d555f07"/>
+    <field name="name">SJK Studio Tags group_system</field>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+    <field name="perm_write" eval="True"/>
+  </record>
+  <record id="sjk_studio_tags_grou_ca91003a-3364-4569-8a31-fa4f3f2b0305" model="ir.model.access" context="{'studio': True}">
+    <field name="group_id" ref="base.group_user"/>
+    <field name="model_id" ref="sjk_studio_tags_abc4df67-d578-4603-ba2c-41815d555f07"/>
+    <field name="name">SJK Studio Tags group_user</field>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+  </record>
+  <record id="tender_management_li_4fb03b9b-000b-4ff1-b370-766008682106" model="ir.model.access" context="{'studio': True}">
+    <field name="group_id" ref="base.group_system"/>
+    <field name="model_id" ref="tender_management_li_bfdd90a1-f3ef-4505-bf00-8e1c01e5c07d"/>
+    <field name="name">tender_management_line group_system</field>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+    <field name="perm_write" eval="True"/>
+  </record>
+  <record id="tender_management_li_efc2ff3c-013f-4eb8-9e6c-5109a743aced" model="ir.model.access" context="{'studio': True}">
+    <field name="group_id" ref="base.group_user"/>
+    <field name="model_id" ref="tender_management_li_bfdd90a1-f3ef-4505-bf00-8e1c01e5c07d"/>
+    <field name="name">tender_management_line group_user</field>
+    <field name="perm_read" eval="True"/>
+  </record>
+  <record id="tender_management_st_2341dc11-a32d-41c8-8d2d-25566ca9598c" model="ir.model.access" context="{'studio': True}">
+    <field name="group_id" ref="base.group_system"/>
+    <field name="model_id" ref="tender_management_st_bc0a0c22-6a26-45d5-a910-d8a3c673691d"/>
+    <field name="name">Tender Management Stages group_system</field>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+    <field name="perm_write" eval="True"/>
+  </record>
+  <record id="tender_management_st_cf74dc8b-e25b-476e-8c12-fda4d38c4408" model="ir.model.access" context="{'studio': True}">
+    <field name="group_id" ref="base.group_user"/>
+    <field name="model_id" ref="tender_management_st_bc0a0c22-6a26-45d5-a910-d8a3c673691d"/>
+    <field name="name">Tender Management Stages group_user</field>
+    <field name="perm_read" eval="True"/>
+  </record>
+  <record id="tender_management_ta_9cc8b147-3915-4874-9659-a9bed583b043" model="ir.model.access" context="{'studio': True}">
+    <field name="group_id" ref="base.group_system"/>
+    <field name="model_id" ref="tender_management_ta_476406bb-fe0b-4ddf-95d2-cb71d788d2c5"/>
+    <field name="name">Tender Management Tags group_system</field>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+    <field name="perm_write" eval="True"/>
+  </record>
+  <record id="tender_management_ta_87e6b8c3-886c-4386-b4fd-341a5d669696" model="ir.model.access" context="{'studio': True}">
+    <field name="group_id" ref="base.group_user"/>
+    <field name="model_id" ref="tender_management_ta_476406bb-fe0b-4ddf-95d2-cb71d788d2c5"/>
+    <field name="name">Tender Management Tags group_user</field>
+    <field name="perm_read" eval="True"/>
+  </record>
+  <record id="tender_manager_15fbef26-d02e-4384-b4e6-6672ac5d4b90" model="ir.model.access" context="{'studio': True}">
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">Tender Manager</field>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+    <field name="perm_write" eval="True"/>
+  </record>
+  <record id="tender_user_36674207-4840-4da1-8ed4-2660a7977539" model="ir.model.access" context="{'studio': True}">
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">Tender User</field>
+    <field name="perm_read" eval="True"/>
+  </record>
+</odoo>

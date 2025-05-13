@@ -1,0 +1,14 @@
+The following relational data haven't been exported because they either refer
+to a model that Studio doesn't export, or have no XML id:
+
+Record: tender_manager_15fbef26-d02e-4384-b4e6-6672ac5d4b90,
+Model: ir.model.access,
+Field: group_id,
+Type: many2one,
+Value: res.groups(111,) ('CRM / Tender Manager')
+
+Record: tender_user_36674207-4840-4da1-8ed4-2660a7977539,
+Model: ir.model.access,
+Field: group_id,
+Type: many2one,
+Value: res.groups(112,) ('CRM / Tender User')

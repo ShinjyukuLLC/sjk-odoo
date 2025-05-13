@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="sjk_studio_f82e9054-db8b-4a16-8dae-c5390b97e042" model="ir.actions.act_window" context="{'studio': True}">
+    <field name="help"><![CDATA[<p class="o_view_nocontent_smiling_face">
+                    This is your new action.
+                </p>
+                <p>By default, it contains a list and a form view and possibly
+                    other view types depending on the options you chose for your model.
+                </p>
+                <p>
+                    You can start customizing these screens by clicking on the Studio icon on the
+                    top right corner (you can also customize this help message there).
+                </p>
+            ]]></field>
+    <field name="name">SJK Studio</field>
+    <field name="res_model">x_sjk_studio</field>
+    <field name="view_mode">kanban,list,form,calendar,gantt,map,pivot,graph</field>
+  </record>
+  <record id="sjk_studio_stages_5ce391f0-794f-47e3-b155-34f057d5a204" model="ir.actions.act_window" context="{'studio': True}">
+    <field name="help"><![CDATA[<p class="o_view_nocontent_smiling_face">
+                    This is your new action.
+                </p>
+                <p>By default, it contains a list and a form view and possibly
+                    other view types depending on the options you chose for your model.
+                </p>
+                <p>
+                    You can start customizing these screens by clicking on the Studio icon on the
+                    top right corner (you can also customize this help message there).
+                </p>
+            ]]></field>
+    <field name="name">SJK Studio Stages</field>
+    <field name="res_model">x_sjk_studio_stage</field>
+  </record>
+  <record id="sjk_studio_tags_7e5738e3-d09d-4438-a891-c3a2ecdc9023" model="ir.actions.act_window" context="{'studio': True}">
+    <field name="help"><![CDATA[<p class="o_view_nocontent_smiling_face">
+                    This is your new action.
+                </p>
+                <p>By default, it contains a list and a form view and possibly
+                    other view types depending on the options you chose for your model.
+                </p>
+                <p>
+                    You can start customizing these screens by clicking on the Studio icon on the
+                    top right corner (you can also customize this help message there).
+                </p>
+            ]]></field>
+    <field name="name">SJK Studio Tags</field>
+    <field name="res_model">x_sjk_studio_tag</field>
+  </record>
+  <record id="tender_management_0c9c3806-4e50-4c83-988e-d5ef5b3ddd1c" model="ir.actions.act_window" context="{'studio': True}">
+    <field name="help"><![CDATA[<p class="o_view_nocontent_smiling_face">
+                    This is your new action.
+                </p>
+                <p>By default, it contains a list and a form view and possibly
+                    other view types depending on the options you chose for your model.
+                </p>
+                <p>
+                    You can start customizing these screens by clicking on the Studio icon on the
+                    top right corner (you can also customize this help message there).
+                </p>
+            ]]></field>
+    <field name="name">Tender Management</field>
+    <field name="res_model">x_tender_management</field>
+    <field name="view_mode">kanban,list,form,calendar,gantt,map,pivot,graph</field>
+  </record>
+  <record id="tender_management_st_7cb49136-1678-400a-b7b3-f0d854df8ecd" model="ir.actions.act_window" context="{'studio': True}">
+    <field name="help"><![CDATA[<p class="o_view_nocontent_smiling_face">
+                    This is your new action.
+                </p>
+                <p>By default, it contains a list and a form view and possibly
+                    other view types depending on the options you chose for your model.
+                </p>
+                <p>
+                    You can start customizing these screens by clicking on the Studio icon on the
+                    top right corner (you can also customize this help message there).
+                </p>
+            ]]></field>
+    <field name="name">Tender Management Stages</field>
+    <field name="res_model">x_tender_management_stage</field>
+  </record>
+  <record id="tender_management_ta_92a39041-23f6-4dc6-96a9-817e29f0c125" model="ir.actions.act_window" context="{'studio': True}">
+    <field name="help"><![CDATA[<p class="o_view_nocontent_smiling_face">
+                    This is your new action.
+                </p>
+                <p>By default, it contains a list and a form view and possibly
+                    other view types depending on the options you chose for your model.
+                </p>
+                <p>
+                    You can start customizing these screens by clicking on the Studio icon on the
+                    top right corner (you can also customize this help message there).
+                </p>
+            ]]></field>
+    <field name="name">Tender Management Tags</field>
+    <field name="res_model">x_tender_management_tag</field>
+  </record>
+</odoo>

@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo noupdate="1">
+  <record id="sjk_studio_multi_com_31135552-f63b-4b78-85c2-bbeb9990583e" model="ir.rule" context="{'studio': True}">
+    <field name="domain_force"><![CDATA[['|', ('x_studio_company_id', '=', False), ('x_studio_company_id', 'in', company_ids)]]]></field>
+    <field name="model_id" ref="sjk_studio_67cedfef-66d4-4f8d-8e17-ad3d2cca7cc4"/>
+    <field name="name">SJK Studio - Multi-Company</field>
+  </record>
+</odoo>

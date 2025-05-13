@@ -1,0 +1,927 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="description_sjk_stud_84e97b8a-fd84-4348-b6d9-3cf375078f4b" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Description</field>
+    <field name="model">x_sjk_studio</field>
+    <field name="model_id" ref="sjk_studio_67cedfef-66d4-4f8d-8e17-ad3d2cca7cc4"/>
+    <field name="name">x_name</field>
+    <field name="on_delete" eval="False"/>
+    <field name="required" eval="True"/>
+    <field name="tracking">1</field>
+    <field name="translate" eval="True"/>
+  </record>
+  <record id="active_sjk_studio_ef3b5451-5d0a-4953-91c4-c87682e12601" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">boolean</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Active</field>
+    <field name="model">x_sjk_studio</field>
+    <field name="model_id" ref="sjk_studio_67cedfef-66d4-4f8d-8e17-ad3d2cca7cc4"/>
+    <field name="name">x_active</field>
+    <field name="on_delete" eval="False"/>
+    <field name="tracking">1</field>
+  </record>
+  <record id="responsible_sjk_stud_56c33671-3604-4aaa-a540-a339c2715be2" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="domain">[('share', '=', False)]</field>
+    <field name="field_description">Responsible</field>
+    <field name="model">x_sjk_studio</field>
+    <field name="model_id" ref="sjk_studio_67cedfef-66d4-4f8d-8e17-ad3d2cca7cc4"/>
+    <field name="name">x_studio_user_id</field>
+    <field name="relation">res.users</field>
+    <field name="tracking">1</field>
+  </record>
+  <record id="contact_sjk_studio_db8d0209-d62d-493c-bb08-deefb33d36d5" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Contact</field>
+    <field name="model">x_sjk_studio</field>
+    <field name="model_id" ref="sjk_studio_67cedfef-66d4-4f8d-8e17-ad3d2cca7cc4"/>
+    <field name="name">x_studio_partner_id</field>
+    <field name="relation">res.partner</field>
+    <field name="tracking">1</field>
+  </record>
+  <record id="phone_sjk_studio_a22d682d-1ab0-4ec3-b224-45a50147b46f" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="related">x_studio_partner_id.phone</field>
+    <field name="field_description">Phone</field>
+    <field name="model">x_sjk_studio</field>
+    <field name="model_id" ref="sjk_studio_67cedfef-66d4-4f8d-8e17-ad3d2cca7cc4"/>
+    <field name="name">x_studio_partner_phone</field>
+    <field name="on_delete" eval="False"/>
+    <field name="tracking">2</field>
+  </record>
+  <record id="email_sjk_studio_22f87101-b9f7-4988-bd28-ac537c836aea" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="related">x_studio_partner_id.email</field>
+    <field name="field_description">Email</field>
+    <field name="model">x_sjk_studio</field>
+    <field name="model_id" ref="sjk_studio_67cedfef-66d4-4f8d-8e17-ad3d2cca7cc4"/>
+    <field name="name">x_studio_partner_email</field>
+    <field name="on_delete" eval="False"/>
+    <field name="tracking">1</field>
+  </record>
+  <record id="company_sjk_studio_75b5ded9-0c92-40fb-9354-f0b0bca71d09" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Company</field>
+    <field name="model">x_sjk_studio</field>
+    <field name="model_id" ref="sjk_studio_67cedfef-66d4-4f8d-8e17-ad3d2cca7cc4"/>
+    <field name="name">x_studio_company_id</field>
+    <field name="relation">res.company</field>
+    <field name="tracking">1</field>
+  </record>
+  <record id="notes_sjk_studio_e0ebbe99-8e74-4b89-80b2-af6b6df36fe3" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">html</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Notes</field>
+    <field name="model">x_sjk_studio</field>
+    <field name="model_id" ref="sjk_studio_67cedfef-66d4-4f8d-8e17-ad3d2cca7cc4"/>
+    <field name="name">x_studio_notes</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="date_sjk_studio_a1a5800b-71fd-471a-8f7e-73646f36499c" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">date</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Date</field>
+    <field name="model">x_sjk_studio</field>
+    <field name="model_id" ref="sjk_studio_67cedfef-66d4-4f8d-8e17-ad3d2cca7cc4"/>
+    <field name="name">x_studio_date</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="end_date_sjk_studio_74f45ca0-7165-43cd-b658-c752aaf7abf3" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">datetime</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">End Date</field>
+    <field name="model">x_sjk_studio</field>
+    <field name="model_id" ref="sjk_studio_67cedfef-66d4-4f8d-8e17-ad3d2cca7cc4"/>
+    <field name="name">x_studio_date_stop</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="start_date_sjk_studi_c561301f-07be-4d15-9221-2b9a7fd3c292" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">datetime</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Start Date</field>
+    <field name="model">x_sjk_studio</field>
+    <field name="model_id" ref="sjk_studio_67cedfef-66d4-4f8d-8e17-ad3d2cca7cc4"/>
+    <field name="name">x_studio_date_start</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="currency_sjk_studio_7f8cb87e-723f-495c-ae6a-0a1aad6220ca" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Currency</field>
+    <field name="model">x_sjk_studio</field>
+    <field name="model_id" ref="sjk_studio_67cedfef-66d4-4f8d-8e17-ad3d2cca7cc4"/>
+    <field name="name">x_studio_currency_id</field>
+    <field name="relation">res.currency</field>
+  </record>
+  <record id="value_sjk_studio_a067f211-593c-48f7-95f7-f83d188a7376" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">monetary</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Value</field>
+    <field name="model">x_sjk_studio</field>
+    <field name="model_id" ref="sjk_studio_67cedfef-66d4-4f8d-8e17-ad3d2cca7cc4"/>
+    <field name="name">x_studio_value</field>
+    <field name="on_delete" eval="False"/>
+    <field name="tracking">1</field>
+    <field name="currency_field">x_studio_currency_id</field>
+  </record>
+  <record id="image_sjk_studio_4128b9e2-4f53-4196-8afb-0274034f52c8" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">binary</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Image</field>
+    <field name="model">x_sjk_studio</field>
+    <field name="model_id" ref="sjk_studio_67cedfef-66d4-4f8d-8e17-ad3d2cca7cc4"/>
+    <field name="name">x_studio_image</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="sequence_sjk_studio_9433ab11-1584-4352-a4e0-f4ab33506af4" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">integer</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Sequence</field>
+    <field name="model">x_sjk_studio</field>
+    <field name="model_id" ref="sjk_studio_67cedfef-66d4-4f8d-8e17-ad3d2cca7cc4"/>
+    <field name="name">x_studio_sequence</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="sjk_studio_line_1c719f84-3f1c-4dfb-a5ec-ca02691970d2" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">X Sjk Studio</field>
+    <field name="model">x_sjk_studio_line_c86bc</field>
+    <field name="model_id" ref="sjk_studio_line_e0ac9b3f-ee27-49a2-9847-9c30d2eb3e4d"/>
+    <field name="name">x_sjk_studio_id</field>
+    <field name="relation">x_sjk_studio</field>
+  </record>
+  <record id="new_lines_sjk_studio_4c25ee4b-d6c5-4c44-a30f-60d5ef728bbe" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">one2many</field>
+    <field name="field_description">New Lines</field>
+    <field name="model">x_sjk_studio</field>
+    <field name="model_id" ref="sjk_studio_67cedfef-66d4-4f8d-8e17-ad3d2cca7cc4"/>
+    <field name="name">x_sjk_studio_line_ids_dfb79</field>
+    <field name="on_delete" eval="False"/>
+    <field name="relation">x_sjk_studio_line_c86bc</field>
+    <field name="relation_field">x_sjk_studio_id</field>
+  </record>
+  <record id="stage_sjk_studio_f7f41834-7650-4381-9ecb-ed0b8beb2095" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Stage</field>
+    <field name="group_expand" eval="True"/>
+    <field name="model">x_sjk_studio</field>
+    <field name="model_id" ref="sjk_studio_67cedfef-66d4-4f8d-8e17-ad3d2cca7cc4"/>
+    <field name="name">x_studio_stage_id</field>
+    <field name="on_delete">restrict</field>
+    <field name="relation">x_sjk_studio_stage</field>
+    <field name="required" eval="True"/>
+    <field name="tracking">1</field>
+  </record>
+  <record id="high_priority_sjk_st_ebb26996-d448-4b6b-a785-93a5fbddf7f0" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">boolean</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">High Priority</field>
+    <field name="model">x_sjk_studio</field>
+    <field name="model_id" ref="sjk_studio_67cedfef-66d4-4f8d-8e17-ad3d2cca7cc4"/>
+    <field name="name">x_studio_priority</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="color_sjk_studio_24cf2f5f-30b0-49cc-9eac-8f509117f682" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">integer</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Color</field>
+    <field name="model">x_sjk_studio</field>
+    <field name="model_id" ref="sjk_studio_67cedfef-66d4-4f8d-8e17-ad3d2cca7cc4"/>
+    <field name="name">x_color</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="kanban_state_sjk_stu_07e1cd6b-5f54-4b77-b3b6-a382e6b768a7" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">selection</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Kanban State</field>
+    <field name="model">x_sjk_studio</field>
+    <field name="model_id" ref="sjk_studio_67cedfef-66d4-4f8d-8e17-ad3d2cca7cc4"/>
+    <field name="name">x_studio_kanban_state</field>
+    <field name="on_delete" eval="False"/>
+    <field name="selection">[('normal', 'In Progress'), ('done', 'Ready'), ('blocked', 'Blocked')]</field>
+  </record>
+  <record id="tags_sjk_studio_90a7cad0-96fb-4f96-945d-e6cd3f08549d" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2many</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Tags</field>
+    <field name="model">x_sjk_studio</field>
+    <field name="model_id" ref="sjk_studio_67cedfef-66d4-4f8d-8e17-ad3d2cca7cc4"/>
+    <field name="name">x_studio_tag_ids</field>
+    <field name="on_delete" eval="False"/>
+    <field name="relation">x_sjk_studio_tag</field>
+    <field name="relation_table">x_sjk_studio_tag_rel</field>
+  </record>
+  <record id="sequence_sjk_studio__29c064d2-b0a6-4210-9bb5-4534cf4467d9" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">integer</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Sequence</field>
+    <field name="model">x_sjk_studio_line_c86bc</field>
+    <field name="model_id" ref="sjk_studio_line_e0ac9b3f-ee27-49a2-9847-9c30d2eb3e4d"/>
+    <field name="name">x_studio_sequence</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="description_sjk_stud_ed6ce940-a49b-4df7-ac92-5302151dbfb3" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Description</field>
+    <field name="model">x_sjk_studio_line_c86bc</field>
+    <field name="model_id" ref="sjk_studio_line_e0ac9b3f-ee27-49a2-9847-9c30d2eb3e4d"/>
+    <field name="name">x_name</field>
+    <field name="on_delete" eval="False"/>
+    <field name="required" eval="True"/>
+    <field name="translate" eval="True"/>
+  </record>
+  <record id="stage_name_sjk_studi_e132e176-e715-4771-86b3-e7975918b7df" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Stage Name</field>
+    <field name="model">x_sjk_studio_stage</field>
+    <field name="model_id" ref="sjk_studio_stages_41c8afce-d957-4e34-9632-026fb5729cd2"/>
+    <field name="name">x_name</field>
+    <field name="on_delete" eval="False"/>
+    <field name="required" eval="True"/>
+    <field name="translate" eval="True"/>
+  </record>
+  <record id="sequence_sjk_studio__a9f3dc46-b814-46df-8827-78e0c4f4616d" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">integer</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Sequence</field>
+    <field name="model">x_sjk_studio_stage</field>
+    <field name="model_id" ref="sjk_studio_stages_41c8afce-d957-4e34-9632-026fb5729cd2"/>
+    <field name="name">x_studio_sequence</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="name_sjk_studio_tags_f8328139-dcb7-4ab9-85c2-c7a1fc7d209e" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Name</field>
+    <field name="model">x_sjk_studio_tag</field>
+    <field name="model_id" ref="sjk_studio_tags_abc4df67-d578-4603-ba2c-41815d555f07"/>
+    <field name="name">x_name</field>
+    <field name="on_delete" eval="False"/>
+    <field name="required" eval="True"/>
+  </record>
+  <record id="color_sjk_studio_tag_8f139112-bbb3-46d1-86ba-a9a2979706df" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">integer</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Color</field>
+    <field name="model">x_sjk_studio_tag</field>
+    <field name="model_id" ref="sjk_studio_tags_abc4df67-d578-4603-ba2c-41815d555f07"/>
+    <field name="name">x_color</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_related_field_le_1a0e81e5-9d4d-4b58-8cbd-a5f2d0bcf77b" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">binary</field>
+    <field name="related">user_id.image_1920</field>
+    <field name="field_description">New Related Field</field>
+    <field name="model">crm.lead</field>
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="name">x_studio_related_field_39q_1iq5jb0ih</field>
+    <field name="on_delete" eval="False"/>
+    <field name="readonly" eval="True"/>
+    <field name="store" eval="False"/>
+  </record>
+  <record id="new_related_field_le_2a862c87-967a-4f29-95e1-838e195027b0" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">binary</field>
+    <field name="related">user_id.image_128</field>
+    <field name="field_description">New Related Field</field>
+    <field name="model">crm.lead</field>
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="name">x_studio_related_field_6en_1iq5jetsl</field>
+    <field name="on_delete" eval="False"/>
+    <field name="readonly" eval="True"/>
+    <field name="store" eval="False"/>
+  </record>
+  <record id="new_related_field_le_0b6566b4-cf5e-44c6-8b9f-da565224e75d" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">binary</field>
+    <field name="related">user_id.image_128</field>
+    <field name="field_description">New Related Field</field>
+    <field name="model">crm.lead</field>
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="name">x_studio_related_field_8aa_1iq5k4vd7</field>
+    <field name="on_delete" eval="False"/>
+    <field name="readonly" eval="True"/>
+    <field name="store" eval="False"/>
+  </record>
+  <record id="new_html_lead_451433a2-9027-4012-8c11-da584bfe6c6d" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">html</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">New HTML</field>
+    <field name="model">crm.lead</field>
+    <field name="model_id" ref="crm.model_crm_lead"/>
+    <field name="name">x_studio_html_field_8ng_1iq7eai8e</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_checkbox_contact_d49fe1d7-cd26-4d3e-84e9-557f2b5bef60" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">boolean</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">New CheckBox</field>
+    <field name="model">res.partner</field>
+    <field name="model_id" ref="base.model_res_partner"/>
+    <field name="name">x_studio_boolean_field_66u_1iqfq68pj</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_checkbox_contact_122ed44f-3ed1-4aa3-8832-a211c708e191" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">boolean</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">New CheckBox</field>
+    <field name="model">res.partner</field>
+    <field name="model_id" ref="base.model_res_partner"/>
+    <field name="name">x_studio_boolean_field_8fv_1iqfrgaqg</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_checkbox_contact_84809579-0600-42d9-be0f-a5bf8f19102e" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">boolean</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">New CheckBox</field>
+    <field name="model">res.partner</field>
+    <field name="model_id" ref="base.model_res_partner"/>
+    <field name="name">x_studio_boolean_field_9fd_1iqfrlruh</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="description_tender_m_a108fb0a-308a-4ebc-a6bc-5a41cecd4211" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Description</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_name</field>
+    <field name="on_delete" eval="False"/>
+    <field name="required" eval="True"/>
+    <field name="tracking">1</field>
+    <field name="translate" eval="True"/>
+  </record>
+  <record id="active_tender_manage_d504318d-a599-41f5-8873-dec0eb44c613" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">boolean</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Active</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_active</field>
+    <field name="on_delete" eval="False"/>
+    <field name="tracking">1</field>
+  </record>
+  <record id="responsible_tender_m_0cbf7336-f4dc-41f9-8616-5ce0d965ca1b" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="domain">[('share', '=', False)]</field>
+    <field name="field_description">Responsible</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_user_id</field>
+    <field name="relation">res.users</field>
+    <field name="tracking">1</field>
+  </record>
+  <record id="contact_tender_manag_028fd609-d4f3-45f1-8e1c-de1324087d78" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Contact</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_partner_id</field>
+    <field name="relation">res.partner</field>
+    <field name="tracking">1</field>
+  </record>
+  <record id="phone_tender_managem_934ff01d-382b-4222-9416-27131e187227" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="related">x_studio_partner_id.phone</field>
+    <field name="field_description">Phone</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_partner_phone</field>
+    <field name="on_delete" eval="False"/>
+    <field name="tracking">2</field>
+  </record>
+  <record id="email_tender_managem_369a929c-b254-46da-a13e-47b0a38dea75" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="related">x_studio_partner_id.email</field>
+    <field name="field_description">Email</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_partner_email</field>
+    <field name="on_delete" eval="False"/>
+    <field name="tracking">1</field>
+  </record>
+  <record id="notes_tender_managem_c997bd05-d41b-4f53-bc5f-346ec219ddc9" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">html</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Notes</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_notes</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="date_tender_manageme_cf6bffb4-25fa-4d10-ab58-9f20e40e6c44" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">date</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Date</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_date</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="end_date_tender_mana_91bc80a0-11f8-4ffe-8e80-adbde3dfda43" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">datetime</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">End Date</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_date_stop</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="start_date_tender_ma_7cc8bccd-2f78-475a-a8fc-55e23805853c" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">datetime</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Start Date</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_date_start</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="currency_tender_mana_a399b0d1-284e-4ae9-a4e4-a8b829e27967" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Currency</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_currency_id</field>
+    <field name="relation">res.currency</field>
+  </record>
+  <record id="value_tender_managem_fb13852e-854a-4092-a9c6-be46d079b17e" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">monetary</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Value</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_value</field>
+    <field name="on_delete" eval="False"/>
+    <field name="tracking">1</field>
+    <field name="currency_field">x_studio_currency_id</field>
+  </record>
+  <record id="image_tender_managem_45cc7130-273f-475e-a9d3-ba863230be46" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">binary</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Image</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_image</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="sequence_tender_mana_3d13c256-2c76-4b99-a8fc-766bcbc76ae1" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">integer</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Sequence</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_sequence</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="tender_management_li_4630fae0-f967-4ec9-90dc-bcaa3042eaed" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">X Tender Management</field>
+    <field name="model">x_tender_management_line_d706a</field>
+    <field name="model_id" ref="tender_management_li_bfdd90a1-f3ef-4505-bf00-8e1c01e5c07d"/>
+    <field name="name">x_tender_management_id</field>
+    <field name="relation">x_tender_management</field>
+  </record>
+  <record id="new_lines_tender_man_b34c6135-147a-4ede-b68f-36dd9884a6ea" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">one2many</field>
+    <field name="field_description">New Lines</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_tender_management_line_ids_43fce</field>
+    <field name="on_delete" eval="False"/>
+    <field name="relation">x_tender_management_line_d706a</field>
+    <field name="relation_field">x_tender_management_id</field>
+  </record>
+  <record id="stage_tender_managem_a46dee8a-2b76-4ca0-b0cc-663a63b73e3b" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Stage</field>
+    <field name="group_expand" eval="True"/>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_stage_id</field>
+    <field name="on_delete">restrict</field>
+    <field name="relation">x_tender_management_stage</field>
+    <field name="required" eval="True"/>
+    <field name="tracking">1</field>
+  </record>
+  <record id="high_priority_tender_63b98817-728a-4c5c-bd67-628a79712a64" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">boolean</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">High Priority</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_priority</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="color_tender_managem_c78f12b1-6bcc-4774-9bcd-a3650de9e743" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">integer</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Color</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_color</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="kanban_state_tender__eedc8e17-e509-4103-be90-36af3385391b" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">selection</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Kanban State</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_kanban_state</field>
+    <field name="on_delete" eval="False"/>
+    <field name="selection">[('normal', 'In Progress'), ('done', 'Ready'), ('blocked', 'Blocked')]</field>
+  </record>
+  <record id="tags_tender_manageme_95838992-5321-430f-bdcb-005a1f547eb3" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2many</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Tags</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_tag_ids</field>
+    <field name="on_delete" eval="False"/>
+    <field name="relation">x_tender_management_tag</field>
+    <field name="relation_table">x_tender_management_tag_rel</field>
+  </record>
+  <record id="sequence_tender_mana_c3c5501f-2c3f-4338-a705-6b05834b79ee" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">integer</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Sequence</field>
+    <field name="model">x_tender_management_line_d706a</field>
+    <field name="model_id" ref="tender_management_li_bfdd90a1-f3ef-4505-bf00-8e1c01e5c07d"/>
+    <field name="name">x_studio_sequence</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="description_tender_m_60dc06f0-77e7-47a2-a4ae-da722c40e047" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Description</field>
+    <field name="model">x_tender_management_line_d706a</field>
+    <field name="model_id" ref="tender_management_li_bfdd90a1-f3ef-4505-bf00-8e1c01e5c07d"/>
+    <field name="name">x_name</field>
+    <field name="on_delete" eval="False"/>
+    <field name="required" eval="True"/>
+    <field name="translate" eval="True"/>
+  </record>
+  <record id="stage_name_tender_ma_c98a128c-c3a1-4f8b-bed0-f4c4e950e921" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Stage Name</field>
+    <field name="model">x_tender_management_stage</field>
+    <field name="model_id" ref="tender_management_st_bc0a0c22-6a26-45d5-a910-d8a3c673691d"/>
+    <field name="name">x_name</field>
+    <field name="on_delete" eval="False"/>
+    <field name="required" eval="True"/>
+    <field name="translate" eval="True"/>
+  </record>
+  <record id="sequence_tender_mana_3276be7d-7481-4fde-bf72-878d6aafec4f" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">integer</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Sequence</field>
+    <field name="model">x_tender_management_stage</field>
+    <field name="model_id" ref="tender_management_st_bc0a0c22-6a26-45d5-a910-d8a3c673691d"/>
+    <field name="name">x_studio_sequence</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="name_tender_manageme_9e8b25cd-eb45-40f2-a33d-b2a4170105c1" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Name</field>
+    <field name="model">x_tender_management_tag</field>
+    <field name="model_id" ref="tender_management_ta_476406bb-fe0b-4ddf-95d2-cb71d788d2c5"/>
+    <field name="name">x_name</field>
+    <field name="on_delete" eval="False"/>
+    <field name="required" eval="True"/>
+  </record>
+  <record id="color_tender_managem_5a630c4c-77c7-4a94-ba10-189f0ef085a5" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">integer</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Color</field>
+    <field name="model">x_tender_management_tag</field>
+    <field name="model_id" ref="tender_management_ta_476406bb-fe0b-4ddf-95d2-cb71d788d2c5"/>
+    <field name="name">x_color</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_text_tender_mana_6065d393-7978-4e49-bdf0-cd8bc2b1decb" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Tender Name</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_tender_name</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_text_tender_mana_5a77e8d5-fce6-4cb7-80da-4bb82fc613fe" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">New Text</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_char_field_3fk_1iqk9phr1</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_text_tender_mana_2eb65e50-6241-473c-8a63-c75a578881a3" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Tender Number</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_tender_number</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_date_tender_mana_1f03d039-29c8-41a4-99ee-788287b10ed7" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">date</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Submission Deadline</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_submission_deadline</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_date_tender_mana_022d737b-3456-4aa3-be09-349d3d929f2e" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">date</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Opening Date</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_opening_date</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_text_tender_mana_d7c08018-5772-4753-b160-ef90f544db68" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Contact Phone</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_contact_phone</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_text_tender_mana_54c8eee2-7afe-498d-a6dd-e7d45628579f" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Contact Email</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_contact_email</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_checkbox_tender__a912641c-2810-4e6d-bbb3-b67d8826c345" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">boolean</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Participation</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_participation</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_text_tender_mana_10ac733c-1055-4939-bdda-77f9ed4d2ae3" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Budget</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_budget</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_text_tender_mana_f13f44c3-97a3-4993-b0b7-9b2b9afc4df0" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Dependent Person</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_dependent_person</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_checkbox_tender__40e29892-3f88-45a2-8d1b-ef09290c12f5" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">boolean</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Vendor</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_vendor</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_checkbox_tender__65fbbb68-140e-4acf-9a99-fb9db469b697" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">boolean</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Authorization Letter</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_authorization_letter</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_image_tender_man_91dd7637-2851-40c3-8119-0a710c337084" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">binary</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">New Image</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_binary_field_87o_1iqkb0cu4</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_one2many_tender__1f6a3ab4-359e-4eee-9f9d-d4984f381545" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">one2many</field>
+    <field name="field_description">New One2Many</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_one2many_field_2op_1iqkb184m</field>
+    <field name="on_delete" eval="False"/>
+    <field name="relation">x_tender_management_line_d706a</field>
+    <field name="relation_field">x_tender_management_id</field>
+  </record>
+  <record id="new_image_tender_man_2108f89e-98a5-4d51-b8fe-cb0d217c536e" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">binary</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">New Image</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_binary_field_886_1iqkb34b8</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_one2many_tender__2d8d41db-0ce9-40f7-a81b-c55c6f033b7d" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">one2many</field>
+    <field name="field_description">Tender Attachments</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_tender_attachments</field>
+    <field name="on_delete" eval="False"/>
+    <field name="relation">x_tender_management_line_d706a</field>
+    <field name="relation_field">x_tender_management_id</field>
+  </record>
+  <record id="new_one2many_tender__9f794b5f-ab00-4990-92be-ac993495b2e4" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">one2many</field>
+    <field name="field_description">Tender Attachments</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_tender_attachments_1</field>
+    <field name="on_delete" eval="False"/>
+    <field name="relation">x_tender_management_line_d706a</field>
+    <field name="relation_field">x_tender_management_id</field>
+  </record>
+  <record id="new_text_tender_mana_80662e44-4350-4b43-abd7-b680286392c2" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Documant Name</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_documant_name</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_multine_text_ten_c85e3b23-ee55-41ca-8181-3c61c3c041f7" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">text</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Document Description</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_document_description</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_image_tender_man_62dbc035-df56-4208-aa82-61043d5dee65" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">binary</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Document Image</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_document_image</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_multine_text_ten_eb994386-81cc-43fc-9c9b-d5ba481095ca" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">text</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Tender Description</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_tender_description</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_multine_text_ten_dd74d6b4-006a-4e67-ab00-0802e8a7f559" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">text</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Tender Notes</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_tender_notes</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_one2many_tender__6716439a-abb1-472c-b95d-75b5b73b04e7" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">one2many</field>
+    <field name="field_description">New One2Many</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_one2many_field_l6_1iqke58vq</field>
+    <field name="on_delete" eval="False"/>
+    <field name="relation">x_tender_management_line_d706a</field>
+    <field name="relation_field">x_tender_management_id</field>
+  </record>
+  <record id="new_image_tender_man_3cf19b75-6b3e-4cf0-8aa1-66e04dfcd028" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">binary</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Document Image</field>
+    <field name="model">x_tender_management_line_d706a</field>
+    <field name="model_id" ref="tender_management_li_bfdd90a1-f3ef-4505-bf00-8e1c01e5c07d"/>
+    <field name="name">x_studio_document_image</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_text_tender_mana_6ec54e65-81a9-480b-8f1c-66656c51e1d5" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Documant Name</field>
+    <field name="model">x_tender_management_line_d706a</field>
+    <field name="model_id" ref="tender_management_li_bfdd90a1-f3ef-4505-bf00-8e1c01e5c07d"/>
+    <field name="name">x_studio_documant_name</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_date_tender_mana_8246756f-fe21-48bf-aa90-b5a0a1f14e65" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">date</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Upload Date</field>
+    <field name="model">x_tender_management_line_d706a</field>
+    <field name="model_id" ref="tender_management_li_bfdd90a1-f3ef-4505-bf00-8e1c01e5c07d"/>
+    <field name="name">x_studio_upload_date</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_many2one_tender__177c7e0d-3a0d-4b3d-b54d-567c90207a51" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Dependent Person</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_dependent_person_1</field>
+    <field name="relation">hr.employee</field>
+  </record>
+  <record id="new_many2one_tender__750a4137-4058-4f39-bc32-741d31e1fb48" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Dependent Person</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_dependent_person_2</field>
+    <field name="relation">hr.employee</field>
+  </record>
+  <record id="new_one2many_tender__6c0c71bc-14fb-49eb-824e-ab347e430db6" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">one2many</field>
+    <field name="field_description">New One2Many</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_one2many_field_5b9_1iqq1v767</field>
+    <field name="on_delete" eval="False"/>
+    <field name="relation">x_tender_management_line_d706a</field>
+    <field name="relation_field">x_tender_management_id</field>
+  </record>
+  <record id="new_text_tender_mana_46ffd737-1ce0-474f-9a1d-8f1e9b79400d" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Tender Description</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_tender_description_1</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_text_tender_mana_21fe895f-5f19-4f9a-b631-41973e86e3eb" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Tender Notes</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_tender_notes_1</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_file_tender_mana_1c0de509-bf46-4403-9918-8d4cfc721cef" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">binary</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Related Files</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_related_files</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="filename_for_x_studi_0d9131ff-7b06-4bd9-990c-c5d2358a9eb2" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Filename for x_studio_binary_field_2a7_1iqq4arlk</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_related_files_filename</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_image_tender_man_65cdbe38-3d3a-4303-9c14-b8a4b39d6ffa" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">binary</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Related Image</field>
+    <field name="model">x_tender_management</field>
+    <field name="model_id" ref="tender_management_5a534c80-d417-443f-998b-38b17516fbf5"/>
+    <field name="name">x_studio_related_image</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+</odoo>

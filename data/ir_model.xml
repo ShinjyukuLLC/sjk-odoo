@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="sjk_studio_67cedfef-66d4-4f8d-8e17-ad3d2cca7cc4" model="ir.model" context="{'studio': True}">
+    <field name="info"><![CDATA[ Main super-class for regular database-persisted Odoo models.
+
+    Odoo models are created by inheriting from this class::
+
+        class ResUsers(Model):
+            ...
+
+    The system will later instantiate the class once per database (on
+    which the class' module is installed).
+    ]]></field>
+    <field name="is_mail_thread" eval="True"/>
+    <field name="is_mail_activity" eval="True"/>
+    <field name="model">x_sjk_studio</field>
+    <field name="name">SJK Studio</field>
+  </record>
+  <record id="sjk_studio_line_e0ac9b3f-ee27-49a2-9847-9c30d2eb3e4d" model="ir.model" context="{'studio': True}">
+    <field name="info"><![CDATA[ Main super-class for regular database-persisted Odoo models.
+
+    Odoo models are created by inheriting from this class::
+
+        class ResUsers(Model):
+            ...
+
+    The system will later instantiate the class once per database (on
+    which the class' module is installed).
+    ]]></field>
+    <field name="model">x_sjk_studio_line_c86bc</field>
+    <field name="name">sjk_studio_line</field>
+  </record>
+  <record id="sjk_studio_stages_41c8afce-d957-4e34-9632-026fb5729cd2" model="ir.model" context="{'studio': True}">
+    <field name="info"><![CDATA[ Main super-class for regular database-persisted Odoo models.
+
+    Odoo models are created by inheriting from this class::
+
+        class ResUsers(Model):
+            ...
+
+    The system will later instantiate the class once per database (on
+    which the class' module is installed).
+    ]]></field>
+    <field name="model">x_sjk_studio_stage</field>
+    <field name="name">SJK Studio Stages</field>
+  </record>
+  <record id="sjk_studio_tags_abc4df67-d578-4603-ba2c-41815d555f07" model="ir.model" context="{'studio': True}">
+    <field name="info"><![CDATA[ Main super-class for regular database-persisted Odoo models.
+
+    Odoo models are created by inheriting from this class::
+
+        class ResUsers(Model):
+            ...
+
+    The system will later instantiate the class once per database (on
+    which the class' module is installed).
+    ]]></field>
+    <field name="model">x_sjk_studio_tag</field>
+    <field name="name">SJK Studio Tags</field>
+  </record>
+  <record id="tender_management_5a534c80-d417-443f-998b-38b17516fbf5" model="ir.model" context="{'studio': True}">
+    <field name="info"><![CDATA[ Main super-class for regular database-persisted Odoo models.
+
+    Odoo models are created by inheriting from this class::
+
+        class ResUsers(Model):
+            ...
+
+    The system will later instantiate the class once per database (on
+    which the class' module is installed).
+    ]]></field>
+    <field name="is_mail_thread" eval="True"/>
+    <field name="is_mail_activity" eval="True"/>
+    <field name="model">x_tender_management</field>
+    <field name="name">Tender Management</field>
+  </record>
+  <record id="tender_management_li_bfdd90a1-f3ef-4505-bf00-8e1c01e5c07d" model="ir.model" context="{'studio': True}">
+    <field name="info"><![CDATA[ Main super-class for regular database-persisted Odoo models.
+
+    Odoo models are created by inheriting from this class::
+
+        class ResUsers(Model):
+            ...
+
+    The system will later instantiate the class once per database (on
+    which the class' module is installed).
+    ]]></field>
+    <field name="model">x_tender_management_line_d706a</field>
+    <field name="name">tender_management_line</field>
+  </record>
+  <record id="tender_management_st_bc0a0c22-6a26-45d5-a910-d8a3c673691d" model="ir.model" context="{'studio': True}">
+    <field name="info"><![CDATA[ Main super-class for regular database-persisted Odoo models.
+
+    Odoo models are created by inheriting from this class::
+
+        class ResUsers(Model):
+            ...
+
+    The system will later instantiate the class once per database (on
+    which the class' module is installed).
+    ]]></field>
+    <field name="model">x_tender_management_stage</field>
+    <field name="name">Tender Management Stages</field>
+  </record>
+  <record id="tender_management_ta_476406bb-fe0b-4ddf-95d2-cb71d788d2c5" model="ir.model" context="{'studio': True}">
+    <field name="info"><![CDATA[ Main super-class for regular database-persisted Odoo models.
+
+    Odoo models are created by inheriting from this class::
+
+        class ResUsers(Model):
+            ...
+
+    The system will later instantiate the class once per database (on
+    which the class' module is installed).
+    ]]></field>
+    <field name="model">x_tender_management_tag</field>
+    <field name="name">Tender Management Tags</field>
+  </record>
+</odoo>

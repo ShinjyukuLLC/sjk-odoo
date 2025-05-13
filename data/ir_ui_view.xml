@@ -1,0 +1,943 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="crm.crm_case_kanban_view_leads" model="ir.ui.view" context="{'studio': True}" forcecreate="1">
+    <field name="arch" type="xml">
+      <kanban highlight_color="color" default_group_by="stage_id" class="o_kanban_small_column o_opportunity_kanban" on_create="quick_create" quick_create_view="crm.quick_create_opportunity_form" archivable="false" sample="1" js_class="crm_kanban">
+        <field name="stage_id" options="{&quot;group_by_tooltip&quot;: {&quot;requirements&quot;: &quot;Description&quot;}}"/>
+        <field name="probability"/>
+        <field name="active"/>
+        <field name="company_currency"/>
+        <field name="recurring_revenue_monthly"/>
+        <field name="team_id"/>
+        <field name="won_status"/>
+        <progressbar field="activity_state" colors="{&quot;planned&quot;: &quot;success&quot;, &quot;today&quot;: &quot;warning&quot;, &quot;overdue&quot;: &quot;danger&quot;}" sum_field="expected_revenue" recurring_revenue_sum_field="recurring_revenue_monthly" help="This bar allows to filter the opportunities based on scheduled activities."/>
+        <templates>
+          <t t-name="menu">
+            <t t-if="widget.editable">
+              <a role="menuitem" type="open" class="dropdown-item">Edit</a>
+            </t>
+            <t t-if="widget.deletable">
+              <a role="menuitem" type="delete" class="dropdown-item">Delete</a>
+            </t>
+            <field name="color" widget="kanban_color_picker"/>
+          </t>
+          <t t-name="card">
+            <widget name="web_ribbon" id="lost_ribbon" title="Lost" bg_color="text-bg-danger" invisible="won_status != 'lost'"/>
+            <widget name="web_ribbon" id="archived_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active or won_status in ['lost', 'won']"/>
+            <field class="fw-bold fs-5" name="name"/>
+            <div>
+              <t t-if="record.expected_revenue.raw_value">
+                <field name="expected_revenue" widget="monetary" options="{'currency_field': 'company_currency'}"/>
+                <span t-if="record.recurring_revenue and record.recurring_revenue.raw_value" groups="crm.group_use_recurring_revenues"> + </span>
+              </t>
+              <t t-if="record.recurring_revenue and record.recurring_revenue.raw_value">
+                <field class="me-1" name="recurring_revenue" widget="monetary" options="{'currency_field': 'company_currency'}" groups="crm.group_use_recurring_revenues"/>
+                <field name="recurring_plan" groups="crm.group_use_recurring_revenues"/>
+              </t>
+            </div>
+            <field name="partner_id" class="text-truncate"/>
+            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+            <field name="lead_properties" widget="properties"/>
+            <footer class="pt-1">
+              <div class="d-flex mt-auto align-items-center">
+                <field name="priority" widget="priority" groups="base.group_user" class="me-2"/>
+                <field name="activity_ids" widget="kanban_activity"/>
+              </div>
+              <field name="user_id" widget="many2one_avatar_user" domain="[('share', '=', False)]" class="ms-auto avatar-lg"/>
+            </footer>
+          </t>
+        </templates>
+      </kanban>
+    </field>
+    <field name="model">crm.lead</field>
+    <field name="name">crm.lead.kanban.lead</field>
+    <field name="priority">1</field>
+    <field name="type">kanban</field>
+  </record>
+  <record id="default_list_view_fo_bfb26e33-e568-40c2-b2fc-ef2cb3b3a5d2" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <list>
+        <field name="x_name"/>
+        <field name="x_studio_partner_id"/>
+        <field name="x_studio_user_id" widget="many2one_avatar_user"/>
+        <field name="x_studio_company_id" groups="base.group_multi_company"/>
+        <field name="x_studio_currency_id" invisible="1"/>
+        <field name="x_studio_value" sum="Total"/>
+        <field name="x_studio_tag_ids" widget="many2many_tags" options="{'color_field': 'x_color'}"/>
+        <field name="x_color" widget="color_picker"/>
+      </list>
+    </field>
+    <field name="model">x_sjk_studio</field>
+    <field name="name">Default list view for x_sjk_studio</field>
+    <field name="type">list</field>
+  </record>
+  <record id="default_form_view_fo_e5e10a7b-f9d8-4799-bdf9-0beba9d07be7" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <form>
+        <header>
+          <field name="x_studio_stage_id" widget="statusbar" options="{'clickable': '1'}"/>
+        </header>
+        <sheet string="SJK Studio">
+          <field name="x_studio_kanban_state" widget="state_selection"/>
+          <widget name="web_ribbon" text="Archived" bg_color="text-bg-danger" invisible="x_active"/>
+          <field name="x_active" invisible="1"/>
+          <field class="oe_avatar" widget="image" name="x_studio_image"/>
+          <div class="oe_title">
+            <h1>
+              <field name="x_name" required="1" placeholder="Name..."/>
+            </h1>
+          </div>
+          <group name="studio_group_e225f2">
+            <group name="studio_group_e225f2_left">
+              <field name="x_studio_partner_id"/>
+              <field name="x_studio_partner_phone" widget="phone" options="{'enable_sms': True}"/>
+              <field name="x_studio_partner_email" widget="email"/>
+              <field name="x_studio_date"/>
+              <field name="x_studio_date_start" string="Dates" widget="daterange" options="{'end_date_field': 'x_studio_date_stop'}"/>
+              <field name="x_studio_date_stop" invisible="1"/>
+            </group>
+            <group name="studio_group_e225f2_right">
+              <field name="x_studio_user_id" widget="many2one_avatar_user"/>
+              <field name="x_studio_currency_id" invisible="1"/>
+              <field name="x_studio_value"/>
+              <field name="x_studio_tag_ids" widget="many2many_tags" options="{'color_field': 'x_color'}"/>
+              <field name="x_studio_company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+            </group>
+          </group>
+          <group>
+            <field name="x_studio_notes" placeholder="Type down your notes here..." nolabel="1" colspan="2"/>
+          </group>
+          <notebook>
+            <page string="Details" name="lines">
+              <field name="x_sjk_studio_line_ids_dfb79"/>
+            </page>
+          </notebook>
+        </sheet>
+        <chatter/>
+      </form>
+    </field>
+    <field name="model">x_sjk_studio</field>
+    <field name="name">Default form view for x_sjk_studio</field>
+    <field name="type">form</field>
+  </record>
+  <record id="default_search_view__1d82cf9c-aff7-4b0e-93c8-184e7ef8c108" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <search>
+        <field name="x_name"/>
+        <field name="x_studio_partner_id" operator="child_of"/>
+        <field name="x_studio_user_id"/>
+        <field name="x_studio_tag_ids"/>
+        <filter string="My SJK Studio" name="my_x_sjk_studio" domain="[['x_studio_user_id', '=', uid]]"/>
+        <separator/>
+        <filter date="x_studio_date" name="studio_filter_date" string="Date"/>
+        <filter date="x_studio_date_start" name="studio_filter_date_start" string="Start Date"/>
+        <filter date="x_studio_date_stop" name="studio_filter_date_stop" string="End Date"/>
+        <separator/>
+        <filter string="Archived" name="archived_x_sjk_studio" domain="[['x_active', '=', False]]"/>
+        <separator/>
+        <filter name="groupby_x_partner" string="Partner" context="{'group_by': 'x_studio_partner_id'}" domain="[]"/>
+        <filter name="groupby_x_user" string="Responsible" context="{'group_by': 'x_studio_user_id'}" domain="[]"/>
+        <filter name="x_studio_stage_id" string="Stage" context="{'group_by': 'x_studio_stage_id'}" domain="[]"/>
+      </search>
+    </field>
+    <field name="model">x_sjk_studio</field>
+    <field name="name">Default search view for x_sjk_studio</field>
+    <field name="type">search</field>
+  </record>
+  <record id="default_calendar_vie_cb49862c-5f0c-4e43-bd6b-7efc9554990a" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <calendar date_start="x_studio_date" create_name_field="x_name"/>
+    </field>
+    <field name="model">x_sjk_studio</field>
+    <field name="name">Default calendar view for x_sjk_studio</field>
+    <field name="type">calendar</field>
+  </record>
+  <record id="default_gantt_view_f_80e52e4a-fd4d-40c0-ac7c-af5914e39586" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <gantt date_start="x_studio_date_start" date_stop="x_studio_date_stop"/>
+    </field>
+    <field name="model">x_sjk_studio</field>
+    <field name="name">Default gantt view for x_sjk_studio</field>
+    <field name="type">gantt</field>
+  </record>
+  <record id="default_kanban_view__4b7ab52d-cfc4-4a9b-a129-2a99b5cf9904" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <kanban default_group_by="x_studio_stage_id" default_order="x_studio_priority desc, x_studio_sequence asc, id desc" highlight_color="x_color">
+        <field name="x_color"/>
+        <field name="x_studio_currency_id"/>
+        <progressbar field="x_studio_kanban_state" colors="{&quot;normal&quot;: &quot;200&quot;, &quot;done&quot;: &quot;success&quot;, &quot;blocked&quot;: &quot;danger&quot;}" sum_field="x_studio_value"/>
+        <templates>
+          <t t-name="menu">
+            <a t-if="widget.editable" role="menuitem" type="open" class="dropdown-item">Edit</a>
+            <a t-if="widget.deletable" role="menuitem" type="delete" class="dropdown-item">Delete</a>
+            <field widget="kanban_color_picker" name="x_color"/>
+          </t>
+          <t t-name="card" class="flex-row">
+            <aside>
+              <field name="x_studio_image" widget="image" options="{&quot;zoom&quot;: true, &quot;background&quot;: true, &quot;preventClicks&quot;: false}"/>
+            </aside>
+            <main>
+              <div name="studio_auto_kanban_header" class="d-flex">
+                <field name="x_studio_priority" widget="boolean_favorite" nolabel="1"/>
+                <field name="display_name" class="h5"/>
+              </div>
+              <div name="studio_auto_kanban_body">
+                <field name="x_studio_tag_ids" options="{'color_field': 'x_color'}"/>
+              </div>
+              <footer>
+                <field name="x_studio_value"/>
+                <div class="ms-auto d-flex align-items-center">
+                  <field name="x_studio_kanban_state" widget="state_selection"/>
+                  <field class="ms-1" name="x_studio_user_id" widget="kanban.many2one_avatar_user"/>
+                </div>
+              </footer>
+            </main>
+          </t>
+        </templates>
+      </kanban>
+    </field>
+    <field name="model">x_sjk_studio</field>
+    <field name="name">Default kanban view for x_sjk_studio</field>
+    <field name="type">kanban</field>
+  </record>
+  <record id="default_map_view_for_d5fb76e7-3982-45e4-9907-56eb2803ce19" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <map res_partner="x_studio_partner_id">
+        <field name="x_studio_partner_id" string="Partner"/>
+      </map>
+    </field>
+    <field name="model">x_sjk_studio</field>
+    <field name="name">Default map view for x_sjk_studio</field>
+    <field name="type">map</field>
+  </record>
+  <record id="default_pivot_view_f_57ec12cc-6d98-484e-ac05-7bd12549dd9c" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <pivot sample="1">
+        <field name="x_studio_value" type="measure"/>
+        <field name="x_studio_stage_id" type="col"/>
+        <field name="x_studio_date" type="row"/>
+      </pivot>
+    </field>
+    <field name="model">x_sjk_studio</field>
+    <field name="name">Default pivot view for x_sjk_studio</field>
+    <field name="type">pivot</field>
+  </record>
+  <record id="default_graph_view_f_7a946494-bb2d-4466-a67b-fef88e9eb4a5" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <graph sample="1">
+        <field name="x_studio_value" type="measure"/>
+        <field name="create_date" type="row"/>
+      </graph>
+    </field>
+    <field name="model">x_sjk_studio</field>
+    <field name="name">Default graph view for x_sjk_studio</field>
+    <field name="type">graph</field>
+  </record>
+  <record id="default_list_view_fo_6537a4fc-0091-4410-b72f-4af546338356" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <list editable="bottom">
+        <field name="x_studio_sequence" widget="handle"/>
+        <field name="x_name"/>
+      </list>
+    </field>
+    <field name="model">x_sjk_studio_line_c86bc</field>
+    <field name="name">Default list view for x_sjk_studio_line_c86bc</field>
+    <field name="type">list</field>
+  </record>
+  <record id="default_form_view_fo_70a0b03d-9d36-434a-ad36-c9ce748da268" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <form>
+        <header/>
+        <sheet string="sjk_studio_line">
+          <div class="oe_title">
+            <h1>
+              <field name="x_name" required="1" placeholder="Name..."/>
+            </h1>
+          </div>
+          <group name="studio_group_8f050d">
+            <group name="studio_group_8f050d_left"/>
+            <group name="studio_group_8f050d_right"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+    <field name="model">x_sjk_studio_line_c86bc</field>
+    <field name="name">Default form view for x_sjk_studio_line_c86bc</field>
+    <field name="type">form</field>
+  </record>
+  <record id="default_search_view__d689d4e0-b6b5-4e99-a824-267f2635b967" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <search>
+        <field name="x_name"/>
+      </search>
+    </field>
+    <field name="model">x_sjk_studio_line_c86bc</field>
+    <field name="name">Default search view for x_sjk_studio_line_c86bc</field>
+    <field name="type">search</field>
+  </record>
+  <record id="default_list_view_fo_6419d02c-9c4a-42ff-94c2-6bc070234b2a" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <list editable="bottom">
+        <field name="x_studio_sequence" widget="handle"/>
+        <field name="x_name"/>
+      </list>
+    </field>
+    <field name="model">x_sjk_studio_stage</field>
+    <field name="name">Default list view for x_sjk_studio_stage</field>
+    <field name="type">list</field>
+  </record>
+  <record id="default_form_view_fo_226376f5-7525-4fe2-997a-e3b5d920b8b9" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <form>
+        <header/>
+        <sheet string="SJK Studio Stages">
+          <div class="oe_title">
+            <h1>
+              <field name="x_name" required="1" placeholder="Name..."/>
+            </h1>
+          </div>
+          <group name="studio_group_dbb28e">
+            <group name="studio_group_dbb28e_left"/>
+            <group name="studio_group_dbb28e_right"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+    <field name="model">x_sjk_studio_stage</field>
+    <field name="name">Default form view for x_sjk_studio_stage</field>
+    <field name="type">form</field>
+  </record>
+  <record id="default_search_view__cfbb5ab0-199d-4f8a-bcd6-b779b61710c8" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <search>
+        <field name="x_name"/>
+      </search>
+    </field>
+    <field name="model">x_sjk_studio_stage</field>
+    <field name="name">Default search view for x_sjk_studio_stage</field>
+    <field name="type">search</field>
+  </record>
+  <record id="default_list_view_fo_7dd45f49-ec99-4733-ad42-549dd9861519" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <list editable="bottom">
+        <field name="x_name"/>
+        <field name="x_color" widget="color_picker"/>
+      </list>
+    </field>
+    <field name="model">x_sjk_studio_tag</field>
+    <field name="name">Default list view for x_sjk_studio_tag</field>
+    <field name="type">list</field>
+  </record>
+  <record id="default_form_view_fo_da22128c-5d4c-4476-9f6c-de225f14b7b0" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <form>
+        <header/>
+        <sheet string="SJK Studio Tags">
+          <div class="oe_title">
+            <h1>
+              <field name="x_name" required="1" placeholder="Name..."/>
+            </h1>
+          </div>
+          <group name="studio_group_81c3c3">
+            <group name="studio_group_81c3c3_left"/>
+            <group name="studio_group_81c3c3_right"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+    <field name="model">x_sjk_studio_tag</field>
+    <field name="name">Default form view for x_sjk_studio_tag</field>
+    <field name="type">form</field>
+  </record>
+  <record id="default_search_view__ec3bd258-8bbb-4975-adb5-dd96862f0b3f" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <search>
+        <field name="x_name"/>
+      </search>
+    </field>
+    <field name="model">x_sjk_studio_tag</field>
+    <field name="name">Default search view for x_sjk_studio_tag</field>
+    <field name="type">search</field>
+  </record>
+  <record id="odoo_studio_crm_lead_f6870271-adfe-4764-ac4c-050269e1bed7" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='user_id']" position="attributes">
+          <attribute name="class">avatar-lg</attribute>
+        </xpath>
+      </data>
+    </field>
+    <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
+    <field name="mode">extension</field>
+    <field name="model">crm.lead</field>
+    <field name="name">Odoo Studio: crm.lead.list.opportunity customization</field>
+    <field name="priority">320</field>
+    <field name="type">list</field>
+  </record>
+  <record id="odoo_studio_crm_lead_836225cb-87e3-4a0d-ba20-4caa99c67374" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//kanban[1]/templates[1]/t[@t-name='card']/widget[@name='web_ribbon']" position="after">
+          <field name="partner_name" display="full" class="fs-5 text-success"/>
+        </xpath>
+        <xpath expr="//kanban[1]/templates[1]/t[@t-name='card']/field[@name='name']" position="attributes">
+          <attribute name="class">fw-bold fs-2</attribute>
+        </xpath>
+        <xpath expr="//kanban[1]/templates[1]/t[@t-name='card']/field[@name='name']" position="after">
+          <field name="contact_name" display="full"/>
+          <field name="phone" display="full" class="text-info"/>
+        </xpath>
+        <xpath expr="//kanban[1]/templates[1]/t[@t-name='card']/footer[1]" position="attributes">
+          <attribute name="class"/>
+        </xpath>
+        <xpath expr="//field[@name='user_id']" position="attributes">
+          <attribute name="string">Борлуулагч</attribute>
+        </xpath>
+      </data>
+    </field>
+    <field name="inherit_id" ref="crm.crm_case_kanban_view_leads"/>
+    <field name="mode">extension</field>
+    <field name="model">crm.lead</field>
+    <field name="name">Odoo Studio: crm.lead.kanban.lead customization</field>
+    <field name="priority">320</field>
+    <field name="type">kanban</field>
+  </record>
+  <record id="odoo_studio_crm_lead_03318fe0-8de3-45e8-bf1a-e57ac29cc170" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='lead']/group[1]/group[1]/field[@name='lang_id']" position="replace"/>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='lead']/group[1]/group[1]/div[1]/field[@name='state_id']" position="replace"/>
+        <xpath expr="//button[@name='action_sale_quotations_new']" position="attributes">
+          <attribute name="string">New</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/group[1]/group[@name='lead_partner']/field[@name='partner_id']" position="attributes">
+          <attribute name="groups">base.group_user</attribute>
+          <attribute name="invisible">False</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/group[1]/group[@name='opportunity_partner']/field[@name='partner_id']" position="attributes">
+          <attribute name="string"/>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/group[1]/group[@name='opportunity_partner']/div[1]/field[@name='email_from']" position="attributes">
+          <attribute name="string"/>
+        </xpath>
+        <xpath expr="//page[@name='internal_notes']" position="attributes">
+          <attribute name="string">Notes</attribute>
+        </xpath>
+        <xpath expr="//page[@name='lead']" position="attributes">
+          <attribute name="string">Lead</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='lead']/group[1]/group[1]" position="attributes">
+          <attribute name="string"/>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='lead']/group[1]/group[1]/label[1]" position="attributes">
+          <attribute name="string"/>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='lead']/group[1]/group[1]/div[1]/field[@name='street']" position="attributes">
+          <attribute name="placeholder">Гудамж...</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='lead']/group[1]/group[1]/div[1]/field[@name='street2']" position="attributes">
+          <attribute name="placeholder">Гудамж 2...</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='lead']/group[1]/group[1]/div[1]/field[@name='city']" position="attributes">
+          <attribute name="placeholder">Хот</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='lead']/group[1]/group[1]/div[1]/field[@name='zip']" position="attributes">
+          <attribute name="placeholder">Зип код</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='lead']/group[1]/group[1]/div[1]/field[@name='country_id']" position="attributes">
+          <attribute name="placeholder">Улс</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='lead']/group[1]/group[1]/field[@name='website']" position="attributes">
+          <attribute name="placeholder"/>
+        </xpath>
+      </data>
+    </field>
+    <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+    <field name="mode">extension</field>
+    <field name="model">crm.lead</field>
+    <field name="name">Odoo Studio: crm.lead.form customization</field>
+    <field name="priority">160</field>
+    <field name="type">form</field>
+  </record>
+  <record id="odoo_studio_product__c868de72-2d24-48b9-89bf-77eadb7157bd" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//page[@name='general_information']" position="attributes">
+          <attribute name="string">Ерөнхий мэдээлэл</attribute>
+        </xpath>
+        <xpath expr="//form[@name='Product Template']/sheet[@name='product_form']/notebook[1]/page[@name='general_information']/group[1]/group[@name='group_general']/field[@name='type']" position="attributes">
+          <attribute name="string">Барааны төрөл</attribute>
+        </xpath>
+        <xpath expr="//form[@name='Product Template']/sheet[@name='product_form']/notebook[1]/page[@name='general_information']/group[1]/group[@name='group_general']/label[1]" position="attributes">
+          <attribute name="string">Нөөц хянах</attribute>
+        </xpath>
+        <xpath expr="//form[@name='Product Template']/sheet[@name='product_form']/notebook[1]/page[@name='general_information']/group[1]/group[@name='group_general']/label[2]" position="attributes">
+          <attribute name="string">Барааны үлдэгдэл</attribute>
+        </xpath>
+        <xpath expr="//field[@name='invoice_policy']" position="attributes">
+          <attribute name="string">Нэхэмжлэхийн бодлого</attribute>
+        </xpath>
+        <xpath expr="//form[@name='Product Template']/sheet[@name='product_form']/notebook[1]/page[@name='general_information']/group[1]/group[@name='group_standard_price']/label[1]" position="attributes">
+          <attribute name="string">Борлуулах үнэ</attribute>
+        </xpath>
+        <xpath expr="//form[@name='Product Template']/sheet[@name='product_form']/notebook[1]/page[@name='general_information']/group[1]/group[@name='group_standard_price']/label[2]" position="attributes">
+          <attribute name="string">Борлуулалтын НӨАТ</attribute>
+        </xpath>
+        <xpath expr="//form[@name='Product Template']/sheet[@name='product_form']/notebook[1]/page[@name='general_information']/group[1]/group[@name='group_standard_price']/label[3]" position="attributes">
+          <attribute name="string">Өртөг</attribute>
+        </xpath>
+        <xpath expr="//field[@name='supplier_taxes_id']" position="attributes">
+          <attribute name="string">Худалдан авалтын НӨАТ</attribute>
+        </xpath>
+        <xpath expr="//field[@name='categ_id']" position="attributes">
+          <attribute name="string">Ангилал</attribute>
+        </xpath>
+        <xpath expr="//field[@name='default_code']" position="attributes">
+          <attribute name="string">Барааны код</attribute>
+        </xpath>
+        <xpath expr="//field[@name='barcode']" position="attributes">
+          <attribute name="string">Баркод</attribute>
+        </xpath>
+        <xpath expr="//group[@name='internal_notes']" position="attributes">
+          <attribute name="string">Дотоод тэмдэглэл</attribute>
+        </xpath>
+        <xpath expr="//page[@name='sales']" position="attributes">
+          <attribute name="string">Борлуулалт</attribute>
+        </xpath>
+        <xpath expr="//field[@name='optional_product_ids']" position="attributes">
+          <attribute name="string">Санал болгох бараа</attribute>
+        </xpath>
+        <xpath expr="//field[@name='accessory_product_ids']" position="attributes">
+          <attribute name="string">Дагалдах бараа</attribute>
+        </xpath>
+        <xpath expr="//field[@name='alternative_product_ids']" position="attributes">
+          <attribute name="string">Орлуулах бараа</attribute>
+        </xpath>
+        <xpath expr="//group[@name='extra_info']" position="attributes">
+          <attribute name="string">Онлайн дэлгүүр</attribute>
+        </xpath>
+        <xpath expr="//field[@name='product_tag_ids']" position="attributes">
+          <attribute name="string">Шошгонууд</attribute>
+        </xpath>
+        <xpath expr="//form[@name='Product Template']/sheet[@name='product_form']/notebook[1]/page[@name='sales']/group[@name='sale']/group[@name='extra_info']/field[@name='is_published']" position="attributes">
+          <attribute name="string">Харуулсан эсэх</attribute>
+        </xpath>
+        <xpath expr="//field[@name='website_sequence']" position="attributes">
+          <attribute name="string">Харагдах дараалал</attribute>
+        </xpath>
+        <xpath expr="//field[@name='public_categ_ids']" position="attributes">
+          <attribute name="string">Ангилалууд</attribute>
+        </xpath>
+        <xpath expr="//form[@name='Product Template']/sheet[@name='product_form']/notebook[1]/page[@name='sales']/group[@name='sale']/group[@name='extra_info']/label[1]" position="attributes">
+          <attribute name="string">Нөөцгүй эсэх</attribute>
+        </xpath>
+        <xpath expr="//field[@name='website_ribbon_id']" position="attributes">
+          <attribute name="string">Тууз</attribute>
+        </xpath>
+        <xpath expr="//form[@name='Product Template']/sheet[@name='product_form']/notebook[1]/page[@name='sales']/group[@name='sale']/group[@name='extra_info']/label[2]" position="attributes">
+          <attribute name="string">Байгаа тоо ширхэгийг харуулах</attribute>
+        </xpath>
+        <xpath expr="//field[@name='out_of_stock_message']" position="attributes">
+          <attribute name="string">Нөөцгүй үед харуулах мессеж</attribute>
+        </xpath>
+        <xpath expr="//group[@name='product_template_images']" position="attributes">
+          <attribute name="string">Онлайн шопын медиа файл</attribute>
+        </xpath>
+        <xpath expr="//form[@name='Product Template']/sheet[@name='product_form']/notebook[1]/page[@name='sales']/group[not(@name)][1]/group[@name='description']" position="attributes">
+          <attribute name="string">Үнийн саналын тайлбар</attribute>
+        </xpath>
+        <xpath expr="//group[@name='ecom_description']" position="attributes">
+          <attribute name="string">Онлайн дэлгүүр дэх танилцуулга</attribute>
+        </xpath>
+        <xpath expr="//form[@name='Product Template']/sheet[@name='product_form']/notebook[1]/page[@name='inventory']" position="attributes">
+          <attribute name="string">Агуулах</attribute>
+        </xpath>
+        <xpath expr="//page[@name='invoicing']" position="attributes">
+          <attribute name="string">Санхүү</attribute>
+        </xpath>
+      </data>
+    </field>
+    <field name="inherit_id" ref="product.product_template_only_form_view"/>
+    <field name="mode">extension</field>
+    <field name="model">product.template</field>
+    <field name="name">Odoo Studio: product.template.product.form customization</field>
+    <field name="priority">160</field>
+    <field name="type">form</field>
+  </record>
+  <record id="odoo_studio_res_part_66455d86-9efa-4ec3-bc1d-6af0bd69d039" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//form[1]/sheet[1]/group[1]/group[1]/div[1]/field[@name='zip']" position="replace"/>
+        <xpath expr="//form[1]/sheet[1]/group[1]/group[1]/div[1]/field[@name='state_id']" position="replace"/>
+        <xpath expr="//form[1]/sheet[1]/div[not(@name)][1]/h1[1]/field[@name='name'][2]" position="attributes">
+          <attribute name="class">text-break border-bottom</attribute>
+          <attribute name="placeholder">e.g. Б.Батбаатар</attribute>
+        </xpath>
+        <xpath expr="//field[@name='parent_id']" position="attributes">
+          <attribute name="class">border-bottom</attribute>
+          <attribute name="invisible">False</attribute>
+          <attribute name="placeholder">Company name...</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/group[1]/group[1]/div[1]/field[@name='city']" position="attributes">
+          <attribute name="string">City, Province</attribute>
+        </xpath>
+        <xpath expr="//field[@name='buyer_id']" position="before">
+          <field name="supplier_rank" string="Is Vendor"/>
+        </xpath>
+      </data>
+    </field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="mode">extension</field>
+    <field name="model">res.partner</field>
+    <field name="name">Odoo Studio: res.partner.form customization</field>
+    <field name="priority">360</field>
+    <field name="type">form</field>
+  </record>
+  <record id="default_list_view_fo_fa2da5e5-184a-4595-ba9a-088dda689c87" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <list>
+        <field name="x_name"/>
+        <field name="x_studio_partner_id"/>
+        <field name="x_studio_user_id" widget="many2one_avatar_user"/>
+        <field name="x_studio_currency_id" invisible="1"/>
+        <field name="x_studio_value" sum="Total"/>
+        <field name="x_studio_tag_ids" widget="many2many_tags" options="{'color_field': 'x_color'}"/>
+        <field name="x_color" widget="color_picker"/>
+      </list>
+    </field>
+    <field name="model">x_tender_management</field>
+    <field name="name">Default list view for x_tender_management</field>
+    <field name="type">list</field>
+  </record>
+  <record id="default_form_view_fo_aba43dba-b73f-426b-b2b1-a4f21393526e" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <form>
+        <header>
+          <field name="x_studio_stage_id" widget="statusbar" options="{'clickable': '1'}"/>
+        </header>
+        <sheet string="Tender Management">
+          <field name="x_studio_kanban_state" widget="state_selection"/>
+          <widget name="web_ribbon" text="Archived" bg_color="text-bg-danger" invisible="x_active"/>
+          <field name="x_active" invisible="1"/>
+          <field class="oe_avatar" widget="image" name="x_studio_image"/>
+          <div class="oe_title">
+            <h1>
+              <field name="x_name" required="1" placeholder="Name..."/>
+            </h1>
+          </div>
+          <group name="studio_group_27822e">
+            <group name="studio_group_27822e_left">
+              <field name="x_studio_partner_id"/>
+              <field name="x_studio_partner_phone" widget="phone" options="{'enable_sms': True}"/>
+              <field name="x_studio_partner_email" widget="email"/>
+              <field name="x_studio_date"/>
+              <field name="x_studio_date_start" string="Dates" widget="daterange" options="{'end_date_field': 'x_studio_date_stop'}"/>
+              <field name="x_studio_date_stop" invisible="1"/>
+            </group>
+            <group name="studio_group_27822e_right">
+              <field name="x_studio_user_id" widget="many2one_avatar_user"/>
+              <field name="x_studio_currency_id" invisible="1"/>
+              <field name="x_studio_value"/>
+              <field name="x_studio_tag_ids" widget="many2many_tags" options="{'color_field': 'x_color'}"/>
+            </group>
+          </group>
+          <group>
+            <field name="x_studio_notes" placeholder="Type down your notes here..." nolabel="1" colspan="2"/>
+          </group>
+          <notebook>
+            <page string="Details" name="lines">
+              <field name="x_tender_management_line_ids_43fce"/>
+            </page>
+          </notebook>
+        </sheet>
+        <chatter/>
+      </form>
+    </field>
+    <field name="model">x_tender_management</field>
+    <field name="name">Default form view for x_tender_management</field>
+    <field name="type">form</field>
+  </record>
+  <record id="default_search_view__71514149-dd1c-4145-89b0-5da40ae47810" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <search>
+        <field name="x_name"/>
+        <field name="x_studio_partner_id" operator="child_of"/>
+        <field name="x_studio_user_id"/>
+        <field name="x_studio_tag_ids"/>
+        <filter string="My Tender Management" name="my_x_tender_management" domain="[['x_studio_user_id', '=', uid]]"/>
+        <separator/>
+        <filter date="x_studio_date" name="studio_filter_date" string="Date"/>
+        <filter date="x_studio_date_start" name="studio_filter_date_start" string="Start Date"/>
+        <filter date="x_studio_date_stop" name="studio_filter_date_stop" string="End Date"/>
+        <separator/>
+        <filter string="Archived" name="archived_x_tender_management" domain="[['x_active', '=', False]]"/>
+        <separator/>
+        <filter name="groupby_x_partner" string="Partner" context="{'group_by': 'x_studio_partner_id'}" domain="[]"/>
+        <filter name="groupby_x_user" string="Responsible" context="{'group_by': 'x_studio_user_id'}" domain="[]"/>
+        <filter name="x_studio_stage_id" string="Stage" context="{'group_by': 'x_studio_stage_id'}" domain="[]"/>
+      </search>
+    </field>
+    <field name="model">x_tender_management</field>
+    <field name="name">Default search view for x_tender_management</field>
+    <field name="type">search</field>
+  </record>
+  <record id="default_calendar_vie_ba06db5a-23bd-4158-a3a5-5bbc7194e7bf" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <calendar date_start="x_studio_date" create_name_field="x_name"/>
+    </field>
+    <field name="model">x_tender_management</field>
+    <field name="name">Default calendar view for x_tender_management</field>
+    <field name="type">calendar</field>
+  </record>
+  <record id="default_gantt_view_f_4bab0511-9687-4305-8ffd-7032b47ac94c" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <gantt date_start="x_studio_date_start" date_stop="x_studio_date_stop"/>
+    </field>
+    <field name="model">x_tender_management</field>
+    <field name="name">Default gantt view for x_tender_management</field>
+    <field name="type">gantt</field>
+  </record>
+  <record id="default_kanban_view__ff8f1dd9-ebf6-4c03-bae3-b188bf98005d" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <kanban default_group_by="x_studio_stage_id" default_order="x_studio_priority desc, x_studio_sequence asc, id desc" highlight_color="x_color">
+        <field name="x_color"/>
+        <field name="x_studio_currency_id"/>
+        <progressbar field="x_studio_kanban_state" colors="{&quot;normal&quot;: &quot;200&quot;, &quot;done&quot;: &quot;success&quot;, &quot;blocked&quot;: &quot;danger&quot;}" sum_field="x_studio_value"/>
+        <templates>
+          <t t-name="menu">
+            <a t-if="widget.editable" role="menuitem" type="open" class="dropdown-item">Edit</a>
+            <a t-if="widget.deletable" role="menuitem" type="delete" class="dropdown-item">Delete</a>
+            <field widget="kanban_color_picker" name="x_color"/>
+          </t>
+          <t t-name="card" class="flex-row">
+            <aside>
+              <field name="x_studio_image" widget="image" options="{&quot;zoom&quot;: true, &quot;background&quot;: true, &quot;preventClicks&quot;: false}"/>
+            </aside>
+            <main>
+              <div name="studio_auto_kanban_header" class="d-flex">
+                <field name="x_studio_priority" widget="boolean_favorite" nolabel="1"/>
+                <field name="display_name" class="h5"/>
+              </div>
+              <div name="studio_auto_kanban_body">
+                <field name="x_studio_tag_ids" options="{'color_field': 'x_color'}"/>
+              </div>
+              <footer>
+                <field name="x_studio_value"/>
+                <div class="ms-auto d-flex align-items-center">
+                  <field name="x_studio_kanban_state" widget="state_selection"/>
+                  <field class="ms-1" name="x_studio_user_id" widget="kanban.many2one_avatar_user"/>
+                </div>
+              </footer>
+            </main>
+          </t>
+        </templates>
+      </kanban>
+    </field>
+    <field name="model">x_tender_management</field>
+    <field name="name">Default kanban view for x_tender_management</field>
+    <field name="type">kanban</field>
+  </record>
+  <record id="default_map_view_for_a8d2bab3-2a1c-4274-b521-b4b88ba70554" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <map res_partner="x_studio_partner_id">
+        <field name="x_studio_partner_id" string="Partner"/>
+      </map>
+    </field>
+    <field name="model">x_tender_management</field>
+    <field name="name">Default map view for x_tender_management</field>
+    <field name="type">map</field>
+  </record>
+  <record id="default_pivot_view_f_64f95d79-33be-4d93-855a-1a50d6791d74" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <pivot sample="1">
+        <field name="x_studio_value" type="measure"/>
+        <field name="x_studio_stage_id" type="col"/>
+        <field name="x_studio_date" type="row"/>
+      </pivot>
+    </field>
+    <field name="model">x_tender_management</field>
+    <field name="name">Default pivot view for x_tender_management</field>
+    <field name="type">pivot</field>
+  </record>
+  <record id="default_graph_view_f_646a1bcb-7468-4694-a54c-6a2972b7a935" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <graph sample="1">
+        <field name="x_studio_value" type="measure"/>
+        <field name="create_date" type="row"/>
+      </graph>
+    </field>
+    <field name="model">x_tender_management</field>
+    <field name="name">Default graph view for x_tender_management</field>
+    <field name="type">graph</field>
+  </record>
+  <record id="default_list_view_fo_011857a1-6b36-4fde-b414-34c67050cfc0" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <list editable="bottom">
+        <field name="x_studio_sequence" widget="handle"/>
+        <field name="x_name"/>
+      </list>
+    </field>
+    <field name="model">x_tender_management_line_d706a</field>
+    <field name="name">Default list view for x_tender_management_line_d706a</field>
+    <field name="type">list</field>
+  </record>
+  <record id="default_form_view_fo_927145c2-7412-47d1-bcb2-87de531a45fc" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <form>
+        <header/>
+        <sheet string="tender_management_line">
+          <div class="oe_title">
+            <h1>
+              <field name="x_name" required="1" placeholder="Name..."/>
+            </h1>
+          </div>
+          <group name="studio_group_6c2638">
+            <group name="studio_group_6c2638_left"/>
+            <group name="studio_group_6c2638_right"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+    <field name="model">x_tender_management_line_d706a</field>
+    <field name="name">Default form view for x_tender_management_line_d706a</field>
+    <field name="type">form</field>
+  </record>
+  <record id="default_search_view__077ffd1e-5adc-4bd1-9830-b42c7a78f599" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <search>
+        <field name="x_name"/>
+      </search>
+    </field>
+    <field name="model">x_tender_management_line_d706a</field>
+    <field name="name">Default search view for x_tender_management_line_d706a</field>
+    <field name="type">search</field>
+  </record>
+  <record id="default_list_view_fo_18d56d11-8bd1-4425-999e-adb95f790fe5" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <list editable="bottom">
+        <field name="x_studio_sequence" widget="handle"/>
+        <field name="x_name"/>
+      </list>
+    </field>
+    <field name="model">x_tender_management_stage</field>
+    <field name="name">Default list view for x_tender_management_stage</field>
+    <field name="type">list</field>
+  </record>
+  <record id="default_form_view_fo_36ac75a4-4450-42d6-928b-1fe3e324e7bb" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <form>
+        <header/>
+        <sheet string="Tender Management Stages">
+          <div class="oe_title">
+            <h1>
+              <field name="x_name" required="1" placeholder="Name..."/>
+            </h1>
+          </div>
+          <group name="studio_group_60f6d3">
+            <group name="studio_group_60f6d3_left"/>
+            <group name="studio_group_60f6d3_right"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+    <field name="model">x_tender_management_stage</field>
+    <field name="name">Default form view for x_tender_management_stage</field>
+    <field name="type">form</field>
+  </record>
+  <record id="default_search_view__1ffe7674-c969-4534-8333-e272375909ce" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <search>
+        <field name="x_name"/>
+      </search>
+    </field>
+    <field name="model">x_tender_management_stage</field>
+    <field name="name">Default search view for x_tender_management_stage</field>
+    <field name="type">search</field>
+  </record>
+  <record id="default_list_view_fo_62b6e44b-4a52-4154-96c5-184bd8415b22" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <list editable="bottom">
+        <field name="x_name"/>
+        <field name="x_color" widget="color_picker"/>
+      </list>
+    </field>
+    <field name="model">x_tender_management_tag</field>
+    <field name="name">Default list view for x_tender_management_tag</field>
+    <field name="type">list</field>
+  </record>
+  <record id="default_form_view_fo_ec824150-9750-4a21-a3b2-3a0074d6ac95" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <form>
+        <header/>
+        <sheet string="Tender Management Tags">
+          <div class="oe_title">
+            <h1>
+              <field name="x_name" required="1" placeholder="Name..."/>
+            </h1>
+          </div>
+          <group name="studio_group_50d2fb">
+            <group name="studio_group_50d2fb_left"/>
+            <group name="studio_group_50d2fb_right"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+    <field name="model">x_tender_management_tag</field>
+    <field name="name">Default form view for x_tender_management_tag</field>
+    <field name="type">form</field>
+  </record>
+  <record id="default_search_view__d63e8b32-e9ab-4178-b29e-3816cde61442" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <search>
+        <field name="x_name"/>
+      </search>
+    </field>
+    <field name="model">x_tender_management_tag</field>
+    <field name="name">Default search view for x_tender_management_tag</field>
+    <field name="type">search</field>
+  </record>
+  <record id="odoo_studio_default__ace46d9e-95b9-40a6-a353-e0f3c37f927e" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='x_tender_management_line_ids_43fce']" position="replace">
+          <group name="studio_group_5tt_1iqq31ovg">
+            <group name="studio_group_5tt_left">
+              <field name="x_studio_tender_description_1"/>
+              <field name="x_studio_tender_notes_1"/>
+            </group>
+            <group name="studio_group_5tt_right">
+              <field widget="file" filename="x_studio_related_files_filename" name="x_studio_related_files"/>
+              <field widget="image" name="x_studio_related_image" options="{&quot;zoom&quot;:true}"/>
+              <field widget="file" invisible="True" name="x_studio_related_files_filename"/>
+            </group>
+          </group>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/group[not(@name)][1]" position="replace"/>
+        <xpath expr="//field[@name='x_studio_date_start']" position="replace">
+          <field name="x_studio_tender_name"/>
+          <field name="x_studio_tender_number"/>
+          <field name="x_studio_budget"/>
+          <field name="x_studio_opening_date"/>
+          <field name="x_studio_dependent_person_2"/>
+        </xpath>
+        <xpath expr="//field[@name='x_studio_date']" position="replace"/>
+        <xpath expr="//field[@name='x_studio_partner_email']" position="replace"/>
+        <xpath expr="//field[@name='x_studio_partner_phone']" position="replace"/>
+        <xpath expr="//field[@name='x_studio_partner_id']" position="replace"/>
+        <xpath expr="//field[@name='x_studio_user_id']" position="before">
+          <field name="x_studio_participation"/>
+        </xpath>
+        <xpath expr="//field[@name='x_studio_value']" position="after">
+          <field name="x_studio_vendor"/>
+          <field name="x_studio_authorization_letter"/>
+        </xpath>
+      </data>
+    </field>
+    <field name="inherit_id" ref="default_form_view_fo_aba43dba-b73f-426b-b2b1-a4f21393526e"/>
+    <field name="mode">extension</field>
+    <field name="model">x_tender_management</field>
+    <field name="name">Odoo Studio: Default form view for x_tender_management customization</field>
+    <field name="priority">99</field>
+    <field name="type">form</field>
+  </record>
+</odoo>

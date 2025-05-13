@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="active_sjk_studio_af32c38e-8f1b-4199-bf76-0945bc00190a" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="active_sjk_studio_ef3b5451-5d0a-4953-91c4-c87682e12601"/>
+    <field name="json_value">true</field>
+  </record>
+  <record id="company_sjk_studio_6d40f71d-0ea3-435e-befb-5a8b50889f28" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="company_sjk_studio_75b5ded9-0c92-40fb-9354-f0b0bca71d09"/>
+    <field name="json_value">1</field>
+  </record>
+  <record id="currency_sjk_studio_6bca348e-8d09-4358-8219-82a7f1ae2c22" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="currency_sjk_studio_7f8cb87e-723f-495c-ae6a-0a1aad6220ca"/>
+    <field name="json_value">108</field>
+  </record>
+  <record id="sequence_sjk_studio_759e26e5-bd70-423d-ad68-61324b432cd6" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="sequence_sjk_studio_9433ab11-1584-4352-a4e0-f4ab33506af4"/>
+    <field name="json_value">10</field>
+  </record>
+  <record id="stage_sjk_studio_ad1aa697-4a05-4a97-9a2d-f36e274fc560" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="stage_sjk_studio_f7f41834-7650-4381-9ecb-ed0b8beb2095"/>
+    <field name="json_value">1</field>
+  </record>
+  <record id="product_type_product_1449890e-afba-4f8f-afe8-2d8f5edac88f" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="product.field_product_template__type"/>
+    <field name="json_value">"consu"</field>
+  </record>
+  <record id="active_tender_manage_72280459-ca85-47a5-a83f-6d1f0b247a23" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="active_tender_manage_d504318d-a599-41f5-8873-dec0eb44c613"/>
+    <field name="json_value">true</field>
+  </record>
+  <record id="currency_tender_mana_67dff696-bf34-4e02-a994-8f19c429fe83" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="currency_tender_mana_a399b0d1-284e-4ae9-a4e4-a8b829e27967"/>
+    <field name="json_value">108</field>
+  </record>
+  <record id="sequence_tender_mana_a7a8863b-fdd2-491f-9aa3-6a4a6af4b68d" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="sequence_tender_mana_3d13c256-2c76-4b99-a8fc-766bcbc76ae1"/>
+    <field name="json_value">10</field>
+  </record>
+  <record id="stage_tender_managem_b3e608c8-cea9-45c1-9041-757447b9666d" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="stage_tender_managem_a46dee8a-2b76-4ca0-b0cc-663a63b73e3b"/>
+    <field name="json_value">1</field>
+  </record>
+  <record id="company_type_contact_0e3f821e-214c-4e66-a782-c3e9b2948fa2" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="base.field_res_partner__company_type"/>
+    <field name="json_value">"person"</field>
+  </record>
+  <record id="language_contact_c2bcc5b0-9785-47ed-bf2a-edc7b98dc92f" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="base.field_res_partner__lang"/>
+    <field name="json_value">"mn_MN"</field>
+  </record>
+</odoo>

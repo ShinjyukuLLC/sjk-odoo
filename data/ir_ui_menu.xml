@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="sjk_studio_edab6330-eddc-4f92-ae06-4c583ca12534" model="ir.ui.menu" context="{'studio': True}">
+    <field name="name">Tender</field>
+    <field name="web_icon">fa fa-home,#00CEB3,#FFFFFF</field>
+  </record>
+  <record id="sjk_studio_sjk_studi_b2617a64-40f8-45c9-bd5e-e35c90cf60ae" model="ir.ui.menu" context="{'studio': True}">
+    <field name="action" ref="sjk_studio_f82e9054-db8b-4a16-8dae-c5390b97e042"/>
+    <field name="active" eval="False"/>
+    <field name="name">SJK Studio</field>
+    <field name="parent_id" ref="sjk_studio_edab6330-eddc-4f92-ae06-4c583ca12534"/>
+  </record>
+  <record id="sjk_studio_configura_f5ec4a73-0a58-4daf-8bb4-406cb1bc868c" model="ir.ui.menu" context="{'studio': True}">
+    <field name="active" eval="False"/>
+    <field name="name">Configuration</field>
+    <field name="parent_id" ref="sjk_studio_edab6330-eddc-4f92-ae06-4c583ca12534"/>
+    <field name="sequence">100</field>
+  </record>
+  <record id="sjk_studio_configura_87f2fff6-58fc-4404-8a10-f3419dfd9f1a" model="ir.ui.menu" context="{'studio': True}">
+    <field name="action" ref="sjk_studio_stages_5ce391f0-794f-47e3-b155-34f057d5a204"/>
+    <field name="active" eval="False"/>
+    <field name="name">SJK Studio Stages</field>
+    <field name="parent_id" ref="sjk_studio_configura_f5ec4a73-0a58-4daf-8bb4-406cb1bc868c"/>
+  </record>
+  <record id="sjk_studio_configura_f50d60f8-72e1-4fe5-ade7-ddadea8499b4" model="ir.ui.menu" context="{'studio': True}">
+    <field name="action" ref="sjk_studio_tags_7e5738e3-d09d-4438-a891-c3a2ecdc9023"/>
+    <field name="active" eval="False"/>
+    <field name="name">SJK Studio Tags</field>
+    <field name="parent_id" ref="sjk_studio_configura_f5ec4a73-0a58-4daf-8bb4-406cb1bc868c"/>
+  </record>
+  <record id="tender_83c6c185-bacb-4e8a-9af9-8cc05e34dec0" model="ir.ui.menu" context="{'studio': True}">
+    <field name="name">Tender</field>
+    <field name="web_icon">fa fa-folder-open,#00CEB3,#FFFFFF</field>
+  </record>
+  <record id="tender_tender_manage_e13d9017-b7cf-4922-aacd-54b3b78e081b" model="ir.ui.menu" context="{'studio': True}">
+    <field name="action" ref="tender_management_0c9c3806-4e50-4c83-988e-d5ef5b3ddd1c"/>
+    <field name="name">Tender Management</field>
+    <field name="parent_id" ref="tender_83c6c185-bacb-4e8a-9af9-8cc05e34dec0"/>
+  </record>
+  <record id="tender_configuration_74d81688-0692-48e5-9f59-c0e1c167e7f5" model="ir.ui.menu" context="{'studio': True}">
+    <field name="name">Configuration</field>
+    <field name="parent_id" ref="tender_83c6c185-bacb-4e8a-9af9-8cc05e34dec0"/>
+    <field name="sequence">100</field>
+  </record>
+  <record id="tender_configuration_af770781-4bc2-431d-be7b-49cefd110e62" model="ir.ui.menu" context="{'studio': True}">
+    <field name="action" ref="tender_management_st_7cb49136-1678-400a-b7b3-f0d854df8ecd"/>
+    <field name="name">Tender Management Stages</field>
+    <field name="parent_id" ref="tender_configuration_74d81688-0692-48e5-9f59-c0e1c167e7f5"/>
+  </record>
+  <record id="tender_configuration_5418b246-dafc-4847-937b-9bdd01408b97" model="ir.ui.menu" context="{'studio': True}">
+    <field name="action" ref="tender_management_ta_92a39041-23f6-4dc6-96a9-817e29f0c125"/>
+    <field name="name">Tender Management Tags</field>
+    <field name="parent_id" ref="tender_configuration_74d81688-0692-48e5-9f59-c0e1c167e7f5"/>
+  </record>
+</odoo>
